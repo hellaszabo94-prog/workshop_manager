@@ -1,6 +1,8 @@
 import WorkshopCard from "./components/WorkshopCard";
+import { useState } from "react";
 
-const workshops = [
+function App() {
+  const [workshops, setWorkshops] = useState([
   {
     id: 1,
     title: "Candle Making Workshop",
@@ -25,9 +27,8 @@ const workshops = [
     location: "Linz",
     price: 39,
   },
-];
+]);
 
-function App() {
   return (
     <main>
       <h1>Workshop Manager</h1>
@@ -41,7 +42,7 @@ function App() {
           description={workshop.description}
           date={workshop.date}
           location={workshop.location}
-          price={workshop.price}
+          price={workshop.price} 
         />
       ))}
 
