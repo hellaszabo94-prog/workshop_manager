@@ -29,11 +29,26 @@ function App() {
   },
 ]);
 
+  function handleAddWorkshop() {
+    const newWorkshop = {
+      id: workshops.length + 1,
+      title: "Painting Workshop",
+      description: "Learn basic painting techniques.",
+      date: "20 November 2026",
+      location: "Linz",
+      price: 35,
+    };
+
+    setWorkshops([...workshops, newWorkshop]);
+  };
+
   return (
     <main>
       <h1>Workshop Manager</h1>
 
       <p>Discover creative workshops and find your next experience.</p>
+
+      <button onClick={handleAddWorkshop}>Add Workshop</button>
 
       {workshops.map((workshop) => (
         <WorkshopCard
