@@ -3,31 +3,33 @@ import { useState } from "react";
 
 function App() {
   const [workshops, setWorkshops] = useState([
-  {
-    id: 1,
-    title: "Candle Making Workshop",
-    description: "Learn how to create your own handmade scented candles.",
-    date: "25 October 2026",
-    location: "Linz",
-    price: 29,
-  },
-  {
-    id: 2,
-    title: "Italian Cooking Workshop",
-    description: "Learn how to prepare authentic Italian dishes.",
-    date: "3 November 2026",
-    location: "Vienna",
-    price: 49,
-  },
-  {
-    id: 3,
-    title: "Pottery Workshop",
-    description: "Create your own handmade ceramic piece.",
-    date: "12 November 2026",
-    location: "Linz",
-    price: 39,
-  },
-]);
+    {
+      id: 1,
+      title: "Candle Making Workshop",
+      description: "Learn how to create your own handmade scented candles.",
+      date: "25 October 2026",
+      location: "Linz",
+      price: 29,
+    },
+    {
+      id: 2,
+      title: "Italian Cooking Workshop",
+      description: "Learn how to prepare authentic Italian dishes.",
+      date: "3 November 2026",
+      location: "Vienna",
+      price: 49,
+    },
+    {
+      id: 3,
+      title: "Pottery Workshop",
+      description: "Create your own handmade ceramic piece.",
+      date: "12 November 2026",
+      location: "Linz",
+      price: 39,
+    },
+  ]);
+
+const [title, setTitle] = useState("");
 
   function handleAddWorkshop() {
     const newWorkshop = {
@@ -49,6 +51,12 @@ function App() {
       <p>Discover creative workshops and find your next experience.</p>
 
       <button onClick={handleAddWorkshop}>Add Workshop</button>
+      <input
+        type="text"
+        value={title}
+        onChange={(event) => setTitle(event.target.value)}
+        placeholder="Workshop title"
+      />
 
       {workshops.map((workshop) => (
         <WorkshopCard
