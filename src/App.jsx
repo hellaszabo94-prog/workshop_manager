@@ -29,7 +29,11 @@ function App() {
     },
   ]);
 
-const [title, setTitle] = useState("");
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [date, setDate] = useState("");
+  const [location, setLocation] = useState("");
+  const [price, setPrice] = useState("");
 
   function handleAddWorkshop() {
     const newWorkshop = {
@@ -51,11 +55,40 @@ const [title, setTitle] = useState("");
       <p>Discover creative workshops and find your next experience.</p>
 
       <button onClick={handleAddWorkshop}>Add Workshop</button>
+
       <input
         type="text"
         value={title}
         onChange={(event) => setTitle(event.target.value)}
         placeholder="Workshop title"
+      />
+      <input
+        type="text"
+        value={title}
+        onChange={(event) => setTitle(event.target.value)}
+        placeholder="Workshop title"
+      />
+      <textarea
+        value={description}
+        onChange={(event) => setDescription(event.target.value)}
+        placeholder="Workshop description"
+      />
+      <input
+        type="date"
+        value={date}
+        onChange={(event) => setDate(event.target.value)}
+      />
+      <input
+        type="text"
+        value={location}
+        onChange={(event) => setLocation(event.target.value)}
+        placeholder="Location"
+      />
+      <input
+        type="number"
+        value={price}
+        onChange={(event) => setPrice(event.target.value)}
+        placeholder="Price"
       />
 
       {workshops.map((workshop) => (
