@@ -48,48 +48,65 @@ function App() {
     setWorkshops([...workshops, newWorkshop]);
   };
 
+  function handleSubmit(event) {
+  event.preventDefault();
+
+  const newWorkshop = {
+    id: workshops.length + 1,
+    title: title,
+    description: description,
+    date: date,
+    location: location,
+    price: Number(price),
+  };
+
+  setWorkshops([...workshops, newWorkshop]);
+}
+
   return (
     <main>
       <h1>Workshop Manager</h1>
 
       <p>Discover creative workshops and find your next experience.</p>
 
-      <button onClick={handleAddWorkshop}>Add Workshop</button>
-
-      <input
-        type="text"
-        value={title}
-        onChange={(event) => setTitle(event.target.value)}
-        placeholder="Workshop title"
-      />
-      <input
-        type="text"
-        value={title}
-        onChange={(event) => setTitle(event.target.value)}
-        placeholder="Workshop title"
-      />
-      <textarea
-        value={description}
-        onChange={(event) => setDescription(event.target.value)}
-        placeholder="Workshop description"
-      />
-      <input
-        type="date"
-        value={date}
-        onChange={(event) => setDate(event.target.value)}
-      />
-      <input
-        type="text"
-        value={location}
-        onChange={(event) => setLocation(event.target.value)}
-        placeholder="Location"
-      />
-      <input
-        type="number"
-        value={price}
-        onChange={(event) => setPrice(event.target.value)}
-        placeholder="Price"
-      />
+      
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={title}
+          onChange={(event) => setTitle(event.target.value)}
+          placeholder="Workshop title"
+        />
+        <input
+          type="text"
+          value={title}
+          onChange={(event) => setTitle(event.target.value)}
+          placeholder="Workshop title"
+        />
+        <textarea
+          value={description}
+          onChange={(event) => setDescription(event.target.value)}
+          placeholder="Workshop description"
+        />
+        <input
+          type="date"
+          value={date}
+          onChange={(event) => setDate(event.target.value)}
+        />
+        <input
+          type="text"
+          value={location}
+          onChange={(event) => setLocation(event.target.value)}
+          placeholder="Location"
+        />
+        <input
+          type="number"
+          value={price}
+          onChange={(event) => setPrice(event.target.value)}
+          placeholder="Price"
+        />
+        <button onClick={handleAddWorkshop}>Add Workshop</button>
+      </form>
 
       {workshops.map((workshop) => (
         <WorkshopCard
