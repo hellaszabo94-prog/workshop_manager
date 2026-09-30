@@ -61,6 +61,12 @@ function App() {
   };
 
   setWorkshops([...workshops, newWorkshop]);
+
+  setTitle("");
+  setDescription("");
+  setDate("");
+  setLocation("");
+  setPrice("");
 }
 
   return (
@@ -71,13 +77,7 @@ function App() {
 
       
       <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          value={title}
-          onChange={(event) => setTitle(event.target.value)}
-          placeholder="Workshop title"
-        />
-        <input
+              <input
           type="text"
           value={title}
           onChange={(event) => setTitle(event.target.value)}
