@@ -35,6 +35,8 @@ function App() {
   const [location, setLocation] = useState("");
   const [price, setPrice] = useState("");
 
+  const [error, setError] = useState("");
+
   function handleAddWorkshop() {
     const newWorkshop = {
       id: workshops.length + 1,
@@ -50,6 +52,11 @@ function App() {
 
   function handleSubmit(event) {
   event.preventDefault();
+
+  if (title.trim() === "" || location.trim() === "") {
+    setError("Please enter a title and location.");
+    return;
+  }
 
   const newWorkshop = {
     id: workshops.length + 1,
@@ -75,9 +82,10 @@ function App() {
 
       <p>Discover creative workshops and find your next experience.</p>
 
+      {error && <p>{error}</p>}
       
       <form onSubmit={handleSubmit}>
-              <input
+        <input
           type="text"
           value={title}
           onChange={(event) => setTitle(event.target.value)}
