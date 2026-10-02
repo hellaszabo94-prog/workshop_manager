@@ -76,6 +76,14 @@ function App() {
   setPrice("");
 }
 
+function handleDeleteWorkshop(id) {
+  const updatedWorkshops = workshops.filter(
+    (workshop) => workshop.id !== id
+  );
+
+  setWorkshops(updatedWorkshops);
+}
+
   return (
     <main>
       <h1>Workshop Manager</h1>
