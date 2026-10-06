@@ -10,6 +10,8 @@ function WorkshopCard(props) {
       <p>Price: €{props.price}</p>
 
       <button>View Details</button>
+
+      <button onClick={() => props.onDelete(props.id)}>Delete</button>
     </article>
   );
 }
