@@ -127,11 +127,13 @@ function handleDeleteWorkshop(id) {
       {workshops.map((workshop) => (
         <WorkshopCard
           key={workshop.id}
+          id={workshop.id}
           title={workshop.title}
           description={workshop.description}
           date={workshop.date}
           location={workshop.location}
-          price={workshop.price} 
+          price={workshop.price}
+          onDelete={handleDeleteWorkshop} 
         />
       ))}
 
