@@ -1,4 +1,5 @@
 import WorkshopCard from "./components/WorkshopCard";
+import WorkshopForm from "./components/WorkshopForm";
 import { useState } from "react";
 
 function App() {
@@ -29,24 +30,14 @@ function App() {
     },
   ]);
 
-  function handleAddWorkshop() {
-    const newWorkshop = {
-      id: workshops.length + 1,
-      title: "Painting Workshop",
-      description: "Learn basic painting techniques.",
-      date: "20 November 2026",
-      location: "Linz",
-      price: 35,
+  function handleAddWorkshop(newWorkshop) {
+    const workshopWithId = {
+      ...newWorkshop,
+      id: Date.now(),
     };
 
-    setWorkshops([...workshops, newWorkshop]);
+    setWorkshops([...workshops, workshopWithId]);
   };
-
-
-
-
-setWorkshops([...workshops, newWorkshop]);
-
 
 
 function handleDeleteWorkshop(id) {
@@ -63,6 +54,7 @@ function handleDeleteWorkshop(id) {
 
       <p>Discover creative workshops and find your next experience.</p>    
       
+      <WorkshopForm onAdd={handleAddWorkshop} />
 
       {workshops.map((workshop) => (
         <WorkshopCard
@@ -80,5 +72,5 @@ function handleDeleteWorkshop(id) {
     </main>
   );
 
-
+}
 export default App;
