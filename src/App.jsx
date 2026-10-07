@@ -30,6 +30,10 @@ function App() {
     },
   ]);
 
+  const [editingWorkshop, setEditingWorkshop] = useState(null);
+
+
+
   function handleAddWorkshop(newWorkshop) {
     const workshopWithId = {
       ...newWorkshop,
