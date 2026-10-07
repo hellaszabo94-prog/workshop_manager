@@ -18,7 +18,6 @@ function WorkshopForm(props) {
         }
 
         const newWorkshop = {
-            id: workshops.length + 1,
             title: title,
             description: description,
             date: date,
@@ -36,39 +35,39 @@ function WorkshopForm(props) {
         setError("");
     }
     return (<form onSubmit={handleSubmit}>
-            <input
-            type="text"
-            value={title}
-            onChange={(event) => setTitle(event.target.value)}
-            placeholder="Workshop title"
-            />
-            <textarea
-            value={description}
-            onChange={(event) => setDescription(event.target.value)}
-            placeholder="Workshop description"
-            />
-            <input
-            type="date"
-            value={date}
-            onChange={(event) => setDate(event.target.value)}
-            />
-            <input
-            type="text"
-            value={location}
-            onChange={(event) => setLocation(event.target.value)}
-            placeholder="Location"
-            />
-            <input
-            type="number"
-            value={price}
-            onChange={(event) => setPrice(event.target.value)}
-            placeholder="Price"
-            />
+                <input
+                type="text"
+                value={title}
+                onChange={(event) => setTitle(event.target.value)}
+                placeholder="Workshop title"
+                />
+                <textarea
+                value={description}
+                onChange={(event) => setDescription(event.target.value)}
+                placeholder="Workshop description"
+                />
+                <input
+                type="date"
+                value={date}
+                onChange={(event) => setDate(event.target.value)}
+                />
+                <input
+                type="text"
+                value={location}
+                onChange={(event) => setLocation(event.target.value)}
+                placeholder="Location"
+                />
+                <input
+                type="number"
+                value={price}
+                onChange={(event) => setPrice(event.target.value)}
+                placeholder="Price"
+                />
 
-            {error && <p>{error}</p>}
+                {error && <p>{error}</p>}
 
-            <button type="submit">Add Workshop</button>
-        </form>
+                <button type="submit">Add Workshop</button>
+            </form>
         );
 }
 
