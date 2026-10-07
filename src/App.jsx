@@ -43,6 +43,9 @@ function App() {
     setWorkshops([...workshops, workshopWithId]);
   };
 
+function handleEditWorkshop(workshop) {
+  setEditingWorkshop(workshop);
+}  
 
 function handleDeleteWorkshop(id) {
   const updatedWorkshops = workshops.filter(
