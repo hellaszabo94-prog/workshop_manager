@@ -72,7 +72,9 @@ function handleDeleteWorkshop(id) {
           date={workshop.date}
           location={workshop.location}
           price={workshop.price}
+          workshop={workshop}
           onDelete={handleDeleteWorkshop} 
+          onEdit={handleEditWorkshop}
         />
       ))}
 
