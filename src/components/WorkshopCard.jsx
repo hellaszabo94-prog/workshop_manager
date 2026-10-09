@@ -9,9 +9,11 @@ function WorkshopCard(props) {
       <p>Location: {props.location}</p>
       <p>Price: €{props.price}</p>
 
-      <button>View Details</button>
 
+      <button onClick={() => props.onEdit(props.workshop)}>Edit</button>
+      
       <button onClick={() => props.onDelete(props.id)}>Delete</button>
+
     </article>
   );
 }
