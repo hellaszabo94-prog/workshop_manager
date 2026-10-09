@@ -61,7 +61,10 @@ function handleDeleteWorkshop(id) {
 
       <p>Discover creative workshops and find your next experience.</p>    
       
-      <WorkshopForm onAdd={handleAddWorkshop} />
+      <WorkshopForm
+              onAdd={handleAddWorkshop}
+              editingWorkshop={editingWorkshop}
+      />
 
       {workshops.map((workshop) => (
         <WorkshopCard
