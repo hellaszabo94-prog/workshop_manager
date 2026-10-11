@@ -9,6 +9,16 @@ function WorkshopForm(props) {
     const [price, setPrice] = useState("");
     const [error, setError] = useState("");
 
+    useEffect(() => {
+        if (props.editingWorkshop) {
+            setTitle(props.editingWorkshop.title);
+            setDescription(props.editingWorkshop.description);
+            setDate(props.editingWorkshop.date);
+            setLocation(props.editingWorkshop.location);
+            setPrice(props.editingWorkshop.price);
+        }
+    }, [props.editingWorkshop]);
+
     function handleSubmit(event) {
     event.preventDefault();
 
