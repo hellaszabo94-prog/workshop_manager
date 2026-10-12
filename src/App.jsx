@@ -47,6 +47,16 @@ function handleEditWorkshop(workshop) {
   setEditingWorkshop(workshop);
 }  
 
+function handleUpdateWorkshop(updatedWorkshop) {
+  const updatedWorkshops = workshops.map((workshop) =>
+    workshop.id === updatedWorkshop.id
+      ? updatedWorkshop
+      : workshop
+  );
+
+  setWorkshops(updatedWorkshops);
+}
+
 function handleDeleteWorkshop(id) {
   const updatedWorkshops = workshops.filter(
     (workshop) => workshop.id !== id
