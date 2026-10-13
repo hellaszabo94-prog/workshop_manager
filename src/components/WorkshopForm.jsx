@@ -35,7 +35,16 @@ function WorkshopForm(props) {
             price: Number(price),
         };
 
+        if (props.editingWorkshop) {
+            const updatedWorkshop = {
+                ...newWorkshop,
+                id: props.editingWorkshop.id,
+            };
+
+            props.onUpdate(updatedWorkshop);
+        } else {
         props.onAdd(newWorkshop);
+        }
 
         setTitle("");
         setDescription("");

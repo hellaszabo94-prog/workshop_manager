@@ -55,6 +55,7 @@ function handleUpdateWorkshop(updatedWorkshop) {
   );
 
   setWorkshops(updatedWorkshops);
+  setEditingWorkshop(null);
 }
 
 function handleDeleteWorkshop(id) {
@@ -73,6 +74,7 @@ function handleDeleteWorkshop(id) {
       
       <WorkshopForm
               onAdd={handleAddWorkshop}
+              onUpdate={handleUpdateWorkshop}
               editingWorkshop={editingWorkshop}
       />
 
