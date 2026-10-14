@@ -20,7 +20,7 @@ function WorkshopForm(props) {
     }, [props.editingWorkshop]);
 
     function handleSubmit(event) {
-    event.preventDefault();
+        event.preventDefault();
 
         if (title.trim() === "" || location.trim() === "") {
             setError("Please enter a title and location.");
@@ -43,7 +43,7 @@ function WorkshopForm(props) {
 
             props.onUpdate(updatedWorkshop);
         } else {
-        props.onAdd(newWorkshop);
+            props.onAdd(newWorkshop);
         }
 
         setTitle("");
@@ -54,41 +54,44 @@ function WorkshopForm(props) {
         setError("");
     }
     return (<form onSubmit={handleSubmit}>
-                <input
-                type="text"
-                value={title}
-                onChange={(event) => setTitle(event.target.value)}
-                placeholder="Workshop title"
-                />
-                <textarea
-                value={description}
-                onChange={(event) => setDescription(event.target.value)}
-                placeholder="Workshop description"
-                />
-                <input
-                type="date"
-                value={date}
-                onChange={(event) => setDate(event.target.value)}
-                />
-                <input
-                type="text"
-                value={location}
-                onChange={(event) => setLocation(event.target.value)}
-                placeholder="Location"
-                />
-                <input
-                type="number"
-                value={price}
-                onChange={(event) => setPrice(event.target.value)}
-                placeholder="Price"
-                />
+        <input
+            type="text"
+            value={title}
+            onChange={(event) => setTitle(event.target.value)}
+            placeholder="Workshop title"
+        />
+        <textarea
+            value={description}
+            onChange={(event) => setDescription(event.target.value)}
+            placeholder="Workshop description"
+        />
+        <input
+            type="date"
+            value={date}
+            onChange={(event) => setDate(event.target.value)}
+        />
+        <input
+            type="text"
+            value={location}
+            onChange={(event) => setLocation(event.target.value)}
+            placeholder="Location"
+        />
+        <input
+            type="number"
+            value={price}
+            onChange={(event) => setPrice(event.target.value)}
+            placeholder="Price"
+        />
 
-                {error && <p>{error}</p>}
+        {error && <p>{error}</p>}
 
-                <button type="submit">Add Workshop</button>
-            </form>
-        );
+        <button type="submit">
+            {props.editingWorkshop
+                ? "Save Changes"
+                : "Add Workshop"}
+        </button>
+    </form>
+    );
 }
 
 export default WorkshopForm;
-  
