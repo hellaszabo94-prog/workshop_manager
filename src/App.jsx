@@ -57,6 +57,9 @@ function handleUpdateWorkshop(updatedWorkshop) {
   setWorkshops(updatedWorkshops);
   setEditingWorkshop(null);
 }
+function handleCancelEdit() {
+  setEditingWorkshop(null);
+}
 
 function handleDeleteWorkshop(id) {
   const updatedWorkshops = workshops.filter(
@@ -76,6 +79,7 @@ function handleDeleteWorkshop(id) {
               onAdd={handleAddWorkshop}
               onUpdate={handleUpdateWorkshop}
               editingWorkshop={editingWorkshop}
+              onCancelEdit={handleCancelEdit}
       />
 
       {workshops.map((workshop) => (

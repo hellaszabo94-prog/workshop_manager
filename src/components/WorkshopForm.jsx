@@ -90,6 +90,15 @@ function WorkshopForm(props) {
                 ? "Save Changes"
                 : "Add Workshop"}
         </button>
+
+        {props.editingWorkshop && (
+            <button
+                type="button"
+                onClick={props.onCancelEdit}
+            >
+                Cancel Edit
+            </button>
+        )}
     </form>
     );
 }
