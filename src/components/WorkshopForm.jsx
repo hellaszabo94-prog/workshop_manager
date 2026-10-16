@@ -16,6 +16,13 @@ function WorkshopForm(props) {
             setDate(props.editingWorkshop.date);
             setLocation(props.editingWorkshop.location);
             setPrice(props.editingWorkshop.price);
+        } else {
+            setTitle("");
+            setDescription("");
+            setDate("");
+            setLocation("");
+            setPrice("");
+            setError("");
         }
     }, [props.editingWorkshop]);
 
