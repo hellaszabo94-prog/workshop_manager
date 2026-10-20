@@ -1,6 +1,9 @@
 import WorkshopCard from "./components/WorkshopCard";
 import WorkshopForm from "./components/WorkshopForm";
 import { useState } from "react";
+import { Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Navigation from "./components/Navigation";
 
 function App() {
   const [workshops, setWorkshops] = useState([
@@ -43,61 +46,76 @@ function App() {
     setWorkshops([...workshops, workshopWithId]);
   };
 
-function handleEditWorkshop(workshop) {
-  setEditingWorkshop(workshop);
-}  
+  function handleEditWorkshop(workshop) {
+    setEditingWorkshop(workshop);
+  }
 
-function handleUpdateWorkshop(updatedWorkshop) {
-  const updatedWorkshops = workshops.map((workshop) =>
-    workshop.id === updatedWorkshop.id
-      ? updatedWorkshop
-      : workshop
-  );
+  function handleUpdateWorkshop(updatedWorkshop) {
+    const updatedWorkshops = workshops.map((workshop) =>
+      workshop.id === updatedWorkshop.id
+        ? updatedWorkshop
+        : workshop
+    );
 
-  setWorkshops(updatedWorkshops);
-  setEditingWorkshop(null);
-}
-function handleCancelEdit() {
-  setEditingWorkshop(null);
-}
+    setWorkshops(updatedWorkshops);
+    setEditingWorkshop(null);
+  }
+  function handleCancelEdit() {
+    setEditingWorkshop(null);
+  }
 
-function handleDeleteWorkshop(id) {
-  const updatedWorkshops = workshops.filter(
-    (workshop) => workshop.id !== id
-  );
+  function handleDeleteWorkshop(id) {
+    const updatedWorkshops = workshops.filter(
+      (workshop) => workshop.id !== id
+    );
 
-  setWorkshops(updatedWorkshops);
-}
+    setWorkshops(updatedWorkshops);
+  }
 
   return (
-    <main>
-      <h1>Workshop Manager</h1>
 
-      <p>Discover creative workshops and find your next experience.</p>    
-      
-      <WorkshopForm
+    <>
+    <Navigation />
+
+    <Routes>
+      <Route path="/" element={<Home />} />
+
+      <Route
+        path="/workshops"
+        element={
+          <main>
+            <h1>Workshop Manager</h1>
+
+            <p>Discover creative workshops and find your next experience.</p>
+
+            <WorkshopForm
               onAdd={handleAddWorkshop}
               onUpdate={handleUpdateWorkshop}
               editingWorkshop={editingWorkshop}
               onCancelEdit={handleCancelEdit}
+            />
+
+            {workshops.map((workshop) => (
+              <WorkshopCard
+                key={workshop.id}
+                id={workshop.id}
+                title={workshop.title}
+                description={workshop.description}
+                date={workshop.date}
+                location={workshop.location}
+                price={workshop.price}
+                workshop={workshop}
+                onDelete={handleDeleteWorkshop}
+                onEdit={handleEditWorkshop}
+              />
+            ))}
+
+          </main>
+
+        }
       />
-
-      {workshops.map((workshop) => (
-        <WorkshopCard
-          key={workshop.id}
-          id={workshop.id}
-          title={workshop.title}
-          description={workshop.description}
-          date={workshop.date}
-          location={workshop.location}
-          price={workshop.price}
-          workshop={workshop}
-          onDelete={handleDeleteWorkshop} 
-          onEdit={handleEditWorkshop}
-        />
-      ))}
-
-    </main>
+    </Routes>
+    </>
   );
 
 }

@@ -109,3 +109,30 @@ code {
   padding: 4px 8px;
   background: var(--code-bg);
 }
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  background-color: #17243a;
+  color: white;
+}
+
+.navigation h2 {
+  margin: 0;
+}
+
+.navigation-links {
+  display: flex;
+  gap: 20px;
+}
+
+.navigation-links a {
+  color: white;
+  text-decoration: none;
+}
+
+.navigation-links a:hover {
+  text-decoration: underline;
+}
