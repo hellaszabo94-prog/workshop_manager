@@ -1,16 +1,16 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 function Navigation() {
-  return (
-    <nav className="navigation">
-      <h2>Workshop Manager</h2>
+    return (
+        <nav className="navigation">
+            <h2>Workshop Manager</h2>
 
-      <div className="navigation-links">
-        <Link to="/">Home</Link>
-        <Link to="/workshops">Workshops</Link>
-      </div>
-    </nav>
-  );
+            <div className="navigation-links">
+                <NavLink to="/">Home</NavLink>
+                <NavLink to="/workshops">Workshops</NavLink>
+            </div>
+        </nav>
+    );
 }
 
 export default Navigation;

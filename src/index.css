@@ -136,3 +136,9 @@ code {
 .navigation-links a:hover {
   text-decoration: underline;
 }
+
+.navigation-links a.active {
+  font-weight: bold;
+  text-decoration: underline;
+  text-underline-offset: 6px;
+}
