@@ -134,7 +134,8 @@ code {
 }
 
 .navigation-links a:hover {
-  text-decoration: underline;
+  text-decoration: none;
+  font-weight: bold;
 }
 
 .navigation-links a.active {
