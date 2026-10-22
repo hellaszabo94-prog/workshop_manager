@@ -32,6 +32,33 @@ function App() {
     },
   ]);
 
+  function handleAddWorkshop(newWorkshop) {
+    const workshopWithId = {
+      ...newWorkshop,
+      id: Date.now(),
+    };
+
+    setWorkshops([...workshops, workshopWithId]);
+  }
+
+  function handleUpdateWorkshop(updatedWorkshop) {
+    const updatedWorkshops = workshops.map((workshop) =>
+      workshop.id === updatedWorkshop.id
+        ? updatedWorkshop
+        : workshop
+    );
+
+    setWorkshops(updatedWorkshops);
+  }
+
+  function handleDeleteWorkshop(id) {
+    const updatedWorkshops = workshops.filter(
+      (workshop) => workshop.id !== id
+    );
+
+    setWorkshops(updatedWorkshops);
+  }
+
   return (
 
     <>
@@ -40,7 +67,12 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
 
-        <Route path="/workshops" element={<Workshops workshops={workshops} />} />
+        <Route path="/workshops" element={<Workshops
+          workshops={workshops}
+          onAdd={handleAddWorkshop}
+          onUpdate={handleUpdateWorkshop}
+          onDelete={handleDeleteWorkshop}
+        />} />
       </Routes>
     </>
   );

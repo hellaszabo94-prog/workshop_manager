@@ -9,42 +9,18 @@ function Workshops(props) {
 
 
 
-    function handleAddWorkshop(newWorkshop) {
-        const workshopWithId = {
-            ...newWorkshop,
-            id: Date.now(),
-        };
-
-        setWorkshops([...workshops, workshopWithId]);
-    };
-
     function handleEditWorkshop(workshop) {
         setEditingWorkshop(workshop);
     }
-
     function handleUpdateWorkshop(updatedWorkshop) {
-        const updatedWorkshops = workshops.map((workshop) =>
-            workshop.id === updatedWorkshop.id
-                ? updatedWorkshop
-                : workshop
-        );
-
-        setWorkshops(updatedWorkshops);
+        props.onUpdate(updatedWorkshop);
         setEditingWorkshop(null);
     }
     function handleCancelEdit() {
         setEditingWorkshop(null);
     }
 
-    function handleDeleteWorkshop(id) {
-        const updatedWorkshops = workshops.filter(
-            (workshop) => workshop.id !== id
-        );
-
-        setWorkshops(updatedWorkshops);
-
-
-    }
+   
 
 
     return (
@@ -56,7 +32,7 @@ function Workshops(props) {
             <p>Discover creative workshops and find your next experience.</p>
 
             <WorkshopForm
-                onAdd={handleAddWorkshop}
+                onAdd={props.onAdd}
                 onUpdate={handleUpdateWorkshop}
                 editingWorkshop={editingWorkshop}
                 onCancelEdit={handleCancelEdit}
@@ -72,7 +48,7 @@ function Workshops(props) {
                     location={workshop.location}
                     price={workshop.price}
                     workshop={workshop}
-                    onDelete={handleDeleteWorkshop}
+                    onDelete={props.onDelete}
                     onEdit={handleEditWorkshop}
                 />
             ))}
