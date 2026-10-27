@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function WorkshopCard(props) {
   return (
     <article>
@@ -9,7 +11,7 @@ function WorkshopCard(props) {
       <p>Location: {props.location}</p>
       <p>Price: €{props.price}</p>
 
-
+      <Link to={`/workshops/${props.id}`}>View Details</Link>
       <button onClick={() => props.onEdit(props.workshop)}>Edit</button>
       
       <button onClick={() => props.onDelete(props.id)}>Delete</button>

@@ -2,35 +2,49 @@ import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Navigation from "./components/Navigation";
 import Workshops from "./pages/Workshops";
-import { useState } from "react";
+import WorkshopDetails from "./pages/WorkshopDetails";
+import { useState, useEffect } from "react";
 
 function App() {
-  const [workshops, setWorkshops] = useState([
-    {
-      id: 1,
-      title: "Candle Making Workshop",
-      description: "Learn how to create your own handmade scented candles.",
-      date: "25 October 2026",
-      location: "Linz",
-      price: 29,
-    },
-    {
-      id: 2,
-      title: "Italian Cooking Workshop",
-      description: "Learn how to prepare authentic Italian dishes.",
-      date: "3 November 2026",
-      location: "Vienna",
-      price: 49,
-    },
-    {
-      id: 3,
-      title: "Pottery Workshop",
-      description: "Create your own handmade ceramic piece.",
-      date: "12 November 2026",
-      location: "Linz",
-      price: 39,
-    },
-  ]);
+  const [workshops, setWorkshops] = useState(() => {
+    const savedWorkshops = localStorage.getItem("workshops");
+
+    return savedWorkshops
+      ? JSON.parse(savedWorkshops)
+      : [
+        {
+          id: 1,
+          title: "Candle Making Workshop",
+          description: "Learn how to create your own handmade scented candles.",
+          date: "25 October 2026",
+          location: "Linz",
+          price: 29,
+        },
+        {
+          id: 2,
+          title: "Italian Cooking Workshop",
+          description: "Learn how to prepare authentic Italian dishes.",
+          date: "3 November 2026",
+          location: "Vienna",
+          price: 49,
+        },
+        {
+          id: 3,
+          title: "Pottery Workshop",
+          description: "Create your own handmade ceramic piece.",
+          date: "12 November 2026",
+          location: "Linz",
+          price: 39,
+        },
+      ];
+  });
+
+  useEffect(() => {
+    localStorage.setItem(
+      "workshops",
+      JSON.stringify(workshops)
+    );
+  }, [workshops]);
 
   function handleAddWorkshop(newWorkshop) {
     const workshopWithId = {
@@ -73,6 +87,10 @@ function App() {
           onUpdate={handleUpdateWorkshop}
           onDelete={handleDeleteWorkshop}
         />} />
+        <Route
+          path="/workshops/:id"
+          element={<WorkshopDetails workshops={workshops} />}
+        />
       </Routes>
     </>
   );
