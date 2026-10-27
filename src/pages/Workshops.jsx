@@ -20,7 +20,7 @@ function Workshops(props) {
         setEditingWorkshop(null);
     }
 
-   
+
 
 
     return (
@@ -52,7 +52,9 @@ function Workshops(props) {
                     onEdit={handleEditWorkshop}
                 />
             ))}
-
+            {props.workshops.length === 0 && (
+                <p>No workshops available. Add your first workshop!</p>
+            )}
         </main>
 
     );
