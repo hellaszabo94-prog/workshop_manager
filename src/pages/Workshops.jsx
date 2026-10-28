@@ -31,11 +31,16 @@ function Workshops(props) {
 
             <p>Discover creative workshops and find your next experience.</p>
 
+            <button onClick={props.onReset}>
+                Reset Workshops
+            </button>
+
             <WorkshopForm
                 onAdd={props.onAdd}
                 onUpdate={handleUpdateWorkshop}
                 editingWorkshop={editingWorkshop}
                 onCancelEdit={handleCancelEdit}
+
             />
 
             {props.workshops.map((workshop) => (
