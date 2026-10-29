@@ -7,7 +7,12 @@ function Workshops(props) {
 
     const [editingWorkshop, setEditingWorkshop] = useState(null);
 
-
+    function handleReset() {
+        const wasReset = props.onReset();
+        if (wasReset) {
+            setEditingWorkshop(null);
+        }
+    }
 
     function handleEditWorkshop(workshop) {
         setEditingWorkshop(workshop);
@@ -31,7 +36,7 @@ function Workshops(props) {
 
             <p>Discover creative workshops and find your next experience.</p>
 
-            <button onClick={props.onReset}>
+            <button onClick={handleReset}>
                 Reset Workshops
             </button>
 

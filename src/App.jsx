@@ -76,7 +76,16 @@ function App() {
   }
 
   function handleResetWorkshops() {
+    const confirmed = window.confirm(
+      "Are you sure you want to reset all workshops? This action cannot be undone."
+    );
+
+    if (!confirmed) {
+      return false;
+    }
+
     setWorkshops([...initialWorkshops]);
+    return true;
   }
 
   return (
