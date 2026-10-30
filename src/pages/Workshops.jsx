@@ -6,6 +6,8 @@ function Workshops(props) {
 
 
     const [editingWorkshop, setEditingWorkshop] = useState(null);
+    const [searchTerm, setSearchTerm] = useState("");
+
 
     function handleReset() {
         const wasReset = props.onReset();
@@ -25,7 +27,14 @@ function Workshops(props) {
         setEditingWorkshop(null);
     }
 
+    const filteredWorkshops = props.workshops.filter((workshop) => {
+        const search = searchTerm.toLowerCase();
 
+        return (
+            workshop.title.toLowerCase().includes(search) ||
+            workshop.location.toLowerCase().includes(search)
+        );
+    });
 
 
     return (
@@ -40,6 +49,18 @@ function Workshops(props) {
                 Reset Workshops
             </button>
 
+            <div>
+                <label htmlFor="workshop-search">Search Workshops</label>
+
+                <input
+                    id="workshop-search"
+                    type="text"
+                    placeholder="Search by title or location..."
+                    value={searchTerm}
+                    onChange={(event) => setSearchTerm(event.target.value)}
+                />
+            </div>
+
             <WorkshopForm
                 onAdd={props.onAdd}
                 onUpdate={handleUpdateWorkshop}
@@ -48,7 +69,7 @@ function Workshops(props) {
 
             />
 
-            {props.workshops.map((workshop) => (
+            {filteredWorkshops.map((workshop) => (
                 <WorkshopCard
                     key={workshop.id}
                     id={workshop.id}
@@ -64,6 +85,10 @@ function Workshops(props) {
             ))}
             {props.workshops.length === 0 && (
                 <p>No workshops available. Add your first workshop!</p>
+            )}
+
+            {props.workshops.length > 0 && filteredWorkshops.length === 0 && (
+                <p>No workshops match your search.</p>
             )}
         </main>
 
