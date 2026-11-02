@@ -2,11 +2,17 @@ import WorkshopCard from "../components/WorkshopCard";
 import WorkshopForm from "../components/WorkshopForm";
 import { useState } from "react";
 
+function getDateValue(dateString) {
+    const date = new Date(dateString);
+    return date.getTime();
+}
+
 function Workshops(props) {
 
 
     const [editingWorkshop, setEditingWorkshop] = useState(null);
     const [searchTerm, setSearchTerm] = useState("");
+    const [sortBy, setSortBy] = useState("default");
 
 
     function handleReset() {
@@ -36,6 +42,26 @@ function Workshops(props) {
         );
     });
 
+    const sortedWorkshops = [...filteredWorkshops].sort((a, b) => {
+        if (sortBy === "price-asc") {
+            return Number(a.price) - Number(b.price);
+        }
+
+        if (sortBy === "price-desc") {
+            return Number(b.price) - Number(a.price);
+        }
+
+        if (sortBy === "date-asc") {
+            return getDateValue(a.date) - getDateValue(b.date);
+        }
+
+        if (sortBy === "date-desc") {
+            return getDateValue(b.date) - getDateValue(a.date);
+        }
+
+        return 0;
+    });
+
 
     return (
 
@@ -61,6 +87,22 @@ function Workshops(props) {
                 />
             </div>
 
+            <div>
+                <label htmlFor="workshop-sort">Sort Workshops</label>
+
+                <select
+                    id="workshop-sort"
+                    value={sortBy}
+                    onChange={(event) => setSortBy(event.target.value)}
+                >
+                    <option value="default">Default order</option>
+                    <option value="price-asc">Price: Low to High</option>
+                    <option value="price-desc">Price: High to Low</option>
+                    <option value="date-asc">Date: Earliest First</option>
+                    <option value="date-desc">Date: Latest First</option>
+                </select>
+            </div>
+
             <WorkshopForm
                 onAdd={props.onAdd}
                 onUpdate={handleUpdateWorkshop}
@@ -69,7 +111,7 @@ function Workshops(props) {
 
             />
 
-            {filteredWorkshops.map((workshop) => (
+            {sortedWorkshops.map((workshop) => (
                 <WorkshopCard
                     key={workshop.id}
                     id={workshop.id}
