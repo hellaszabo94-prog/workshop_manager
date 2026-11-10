@@ -44,5 +44,35 @@ export default function useWorkshopApi() {
     };
   }, []);
 
-  return { workshops, loading, error };
+  async function addWorkshop(workshopData) {
+    const response = await fetch("/api/workshops", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(workshopData),
+    });
+
+    if (!response.ok) {
+      throw new Error(
+        `Failed to add workshop: ${response.status}`
+      );
+    }
+
+    const newWorkshop = await response.json();
+
+    setWorkshops((previousWorkshops) => [
+      ...previousWorkshops,
+      newWorkshop,
+    ]);
+
+    return newWorkshop;
+  }
+
+  return {
+    workshops,
+    loading,
+    error,
+    addWorkshop,
+  };
 }
